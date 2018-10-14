@@ -48,6 +48,10 @@ class LCSstring
 		maxSequence(n,m);	
 
 		System.out.println("longest common subsequence :"+T[n][m]);
+
+		System.out.println("String is ");
+
+		sequence(n,m);
 	}
 
 	static void maxSequence(int n,int m)
@@ -73,5 +77,29 @@ class LCSstring
 				}
 			}
 		}	
+	}
+
+	static void sequence(int i,int j)
+	{
+		while(i>0 && j>0)
+		{
+			if(S1[i-1]==S2[j-1])
+			{
+				System.out.println(S1[i-1]);
+				i=i-1;
+				j=j-1;
+			}
+			else
+			{
+					if(T[i-1][j]>T[i][j-1])
+					{
+						i=i-1;
+					}
+					else
+					{
+						j=j-1;
+					}	
+			}
+		}
 	}
 }
