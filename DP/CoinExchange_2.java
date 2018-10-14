@@ -31,8 +31,12 @@ class CoinExchange_2
 
 		T=new int[n+1][3];
 
-		findCoin(A,n,k);			
-		System.out.println("value "+T[n][2]);
+		findCoin(A,n,k);
+
+		if(n%2==0)
+			System.out.println("value "+T[n][2]);
+		else
+			System.out.println("value "+T[n][1]);
 	}
 	
 	static void findCoin(int[] A,int n,int k)

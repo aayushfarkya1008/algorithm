@@ -31,7 +31,7 @@ class CoinExchange
 		T=new int[n+1][k+1];
 
 		findCoin(A,n,k);			
-		System.out.println("value "+T[n][3]);
+		System.out.println("value "+T[n][k]);
 	}
 	
 	static void findCoin(int[] A,int n,int k)
@@ -53,7 +53,7 @@ class CoinExchange
 			{
 				
 				
-				if(i>A[j] && (1+T[i-A[j]][j])<T[i][j-1])
+				if(i>=A[j] && (1+T[i-A[j]][j])<T[i][j-1])
 				{
 					T[i][j]=T[i-A[j]][j]+1;
 				}
