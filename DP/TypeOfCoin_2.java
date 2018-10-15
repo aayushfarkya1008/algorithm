@@ -73,7 +73,7 @@ class TypeOfCoin_2
 		{
 					if(i>=A[j] && (1+T[i-A[j]])==T[i])
 					{
-						System.out.println(j+"th coin used");
+						System.out.println("coin used "+A[j]);
 						i=i-A[j];
 					}	
 					else
