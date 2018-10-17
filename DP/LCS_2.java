@@ -1,4 +1,8 @@
 //LCS with only two array
+/*PROBLEM:IF WE USE LOOP IN REVERSE ORDER OTHER THAN 
+ORDER MENTIONED IN PROGRAM THEN WE WILL END IN OVERWRITING THE VALUE USED
+ie we always need to calculate columnwise .
+*/
 import java.util.*;
 import java.io.*;
 
@@ -44,7 +48,7 @@ class LCS_2
 			S2[i]=in.nextLine();
 		}
 */
-		T=new int[n+1][3];
+		T=new int[n+1][2];
 
 		maxSequence(n,m);	
 
@@ -56,9 +60,9 @@ class LCS_2
 
 	static void maxSequence(int n,int m)
 	{
-		for(int i=1;i<=n;i++)
+		for(int j=1;j<=m;j++)
 		{
-			for(int j=1;j<=m;j++)
+			for(int i=1;i<=n;i++)
 			{
 				if(j%2==1)
 				{	
@@ -77,6 +81,8 @@ class LCS_2
 							T[i][1]=T[i-1][1];
 						}
 					}
+
+				 System.out.println("i "+i+" j"+j +" 1 "+T[i][1]);	
 				}
 				else
 				{
@@ -95,6 +101,8 @@ class LCS_2
 							T[i][0]=T[i-1][0];
 						}
 					}
+
+				System.out.println("i "+i+" j"+j +" 0 "+T[i][0]);	
 				}	
 			}
 		}	
