@@ -6,13 +6,14 @@ class RodCutting
 	static int[] C;
 	static int[][] T;
 	static int minValue;
+	static int len;
 	public static void main(String args[])
 	{
 		Scanner in =new Scanner(System.in);
 		int n,l;
 		
 		System.out.println("Enter inital length of rod :");
-		l=in.nextInt();
+		len=in.nextInt();
 		
 		System.out.println("Enter number of cut ");
 		n=in.nextInt();
@@ -47,7 +48,7 @@ class RodCutting
 				int y;
 				if(j==4)
 				{
-					y=100;
+					y=l;
 				}
 				else
 				{
