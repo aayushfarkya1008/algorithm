@@ -1,12 +1,12 @@
-//Al pair shortest path problem
+//Single Source shortest path problem
 
 import java.util.*;
 import java.io.*;
 
-class Path_APSP
+class BellmanFord
 {
-	static int[][] D;
-	static int[][] PI;	//for backtracking purpose	
+	static int[] D;
+	static int[][] W;
 
 	public static void main(String args[])
 	{
@@ -16,47 +16,52 @@ class Path_APSP
 		System.out.println("Enter no of vertices : ");
 		n=in.nextInt();
 		
-		D=new int[n+1][n+1];
-		PI=new int[n+1][n+1];
+		D=new int[n+1];
+		W=new int[n+1][n+1];
 
 		System.out.println("Enter elements :");
 		for(int i=1;i<=n;i++)
 		{
 			for(int j=1;j<=n;j++)
 			{
-				D[i][j]=in.nextInt();	
-			}
+				W[i][j]=in.nextInt();
+			}		
+		}
+		
+		for(int i=1;i<=n;i++)
+		{
+			D[i]=W[1][i];
 		}
 
-
 		shortestPath(n);	
+		System.out.print("o/p :");
 
 		for(int i=1;i<=n;i++)
 		{
-			for(int j=1;j<=n;j++)
-			{
-				System.out.print(D[i][j]+"       ");						
-			}
-
-			System.out.println(" ");
+				System.out.println(D[i]);						
 		}
 
 	}
 
 	static void shortestPath(int n)
 	{
-		for(int k=1;k<=n;k++)
+		for(int k=2;k<=n;k++)
 		{
 			for(int i=1;i<=n;i++)
 			{
 				for(int j=1;j<=n;j++)
 				{
-					if(D[i][j]>(D[i][k]+D[k][j]))
+					if(D[j]>(D[i]+W[i][j]))
 						{
-							D[i][j]=D[i][k]+D[k][j];
-							PI[i][j]=k;
-						}		
+							D[j]=D[i]+W[i][j];
+							//PI[i][j]=k;
+						}			
 				}
+			}
+
+			for(int i=1;i<=n;i++)
+			{
+					System.out.println("Iteration "+i+" D "+D[i]);						
 			}
 		}		
 	}

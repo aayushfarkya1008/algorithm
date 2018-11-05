@@ -3,11 +3,10 @@
 import java.util.*;
 import java.io.*;
 
-class Path_APSP
+class NPath_APSP
 {
 	static int[][] D;
-	static int[][] PI;	//for backtracking purpose	
-
+	static int[][] N;	//for backtracking purpose
 	public static void main(String args[])
 	{
 		Scanner in =new Scanner(System.in);
@@ -17,15 +16,18 @@ class Path_APSP
 		n=in.nextInt();
 		
 		D=new int[n+1][n+1];
-		PI=new int[n+1][n+1];
+		N=new int[n+1][n+1];
 
 		System.out.println("Enter elements :");
 		for(int i=1;i<=n;i++)
 		{
 			for(int j=1;j<=n;j++)
 			{
-				D[i][j]=in.nextInt();	
+				D[i][j]=in.nextInt();
+				N[i][j]=1;	
 			}
+
+			N[i][i]=0;
 		}
 
 
@@ -35,12 +37,9 @@ class Path_APSP
 		{
 			for(int j=1;j<=n;j++)
 			{
-				System.out.print(D[i][j]+"       ");						
+				System.out.println(i+" "+j+" "+N[i][j]);	
 			}
-
-			System.out.println(" ");
 		}
-
 	}
 
 	static void shortestPath(int n)
@@ -53,12 +52,17 @@ class Path_APSP
 				{
 					if(D[i][j]>(D[i][k]+D[k][j]))
 						{
-							D[i][j]=D[i][k]+D[k][j];
-							PI[i][j]=k;
-						}		
+							D[i][j]=D[i][k]+D[k][j];	
+							N[i][j]=N[i][k]*N[k][j];	
+						}
+					else if(i!=j && D[i][j]==(D[i][k]+D[k][j]))
+						{
+							N[i][j]=N[i][j]+N[i][k]*N[k][j];	
+						}
+
+						//&& i!=k && j!=k 
 				}
 			}
 		}		
 	}
-
 }
