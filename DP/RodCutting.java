@@ -20,60 +20,51 @@ class RodCutting
 		
 		System.out.println("Enter place of cuts ");
 		
-		C=new int[n+1];
+		C=new int[n+3];
+		C[n+2]=len;
 
-		for(int i=1;i<=n;i++)
+		for(int i=2;i<=n+1;i++)
 		{
 			C[i]=in.nextInt();
 		}
 
 		
-		T=new int[n+2][n+2];
+		T=new int[n+3][n+3];
 
 		minCost(n);	
 
-		System.out.println("Minimum Cost is :"+T[0][n+1]);
+		System.out.println("Minimum Cost is :"+T[1][n+2]);
 	}
 
 	static void minCost(int n)
 	{
-		for(int l=1 ;l<=n+1;l++)
-		{
-			int i=n+1-l;
-			//System.out.println("i "+i);
-			for(int j=i+2;j<=n+1;j++)
+		for(int l=2;l<=n+1;l++)
 			{
-				
-				int x=C[i];
-				int y;
-				if(j==4)
+				for(int i=1;i<=n-l+2;i++)
 				{
-					y=l;
-				}
-				else
-				{
-					y=C[j];	
-				}
-				minValue=0;
-				int set=0;
-				for(int k=i+1;k<j;k++)
-				{
-					//System.out.println("k "+T[i][k]+"----"+T[k][j]);
-					if(set==0)
+					int j=i+l;
+					minValue=10000;
+					
+					T[i][j]=C[j]-C[i];
+					
+					int set=0;
+
+					for(int k=i+1;k<=j-1;k++)
 					{
-						minValue=T[i][k]+T[k][j];
+						if(minValue>(T[i][k]+T[k][j]))
+						{
+							
+							minValue=T[i][k]+T[k][j];	
+						}
 						set=1;
 					}
-					else if(minValue>(T[i][k]+T[k][j]))
+
+					if(set==1)
 					{
-						minValue=T[i][k]+T[k][j];
-
-					}	
+						T[i][j]=T[i][j]+minValue;
+						set=0;
+					}
 				}
-
-				T[i][j]=y-x+minValue;
-				System.out.println("i "+i+" j "+j+" "+T[i][j]);
-			}
-		}
+			}	
 	}
 }
