@@ -1,5 +1,3 @@
-//Single Source shortest nodeath noderoblem
-
 import java.util.*;
 import java.io.*;
 
@@ -63,7 +61,7 @@ class DFS_Rec
 		PI[1]=1;
 		dfs(n,1);
 
-		for(int k=1;k<=n;k++)
+		/*for(int k=1;k<=n;k++)
 		{
 			int temp;
 			if(node[k].sum>(tweight-node[k].sum))
@@ -79,7 +77,7 @@ class DFS_Rec
 				{min=temp;}	
 		}
 
-		System.out.println("Min edge to be deleted "+min);
+		System.out.println("Min edge to be deleted "+min);*/
 	}
 
 	static void dfs(int n,int source)
@@ -102,9 +100,10 @@ class DFS_Rec
 		
 		for(int j=1;j<=n;j++)
 		{
-			if(A[source][j]!=0)
+			if(A[source][j]!=0 && node[j].color!=1)
 			{
 				node[source].sum=node[source].sum+node[j].sum;
+				System.out.println("node :"+j+" sum"+node[j].sum);
 			}
 		}
 	}
