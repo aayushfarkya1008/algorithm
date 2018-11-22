@@ -61,7 +61,7 @@ class BFS
 			//System.out.println("x: "+x);
 			for(int i=1;i<=n;i++)
 			{
-				if((A[x][i]==1) && COLOR[i]!=2 && COLOR[i]!=1)
+				if((A[x][i]==1) && COLOR[i]==0)
 				{
 					Q.add(i);
 					COLOR[i]=1;
